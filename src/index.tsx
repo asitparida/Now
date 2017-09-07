@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import App from './App';
+import App from './app/app.component';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import './index.css';
 
