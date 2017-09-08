@@ -1,11 +1,12 @@
 import * as React from 'react';
-import RaisedButton from 'material-ui/RaisedButton';
 import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
 import IconButton from 'material-ui/IconButton';
 import AppDrawer from '../drawer/drawer.component';
 import { Drawer } from '../drawer/drawer-ipc.service';
 import { white } from 'material-ui/styles/colors';
 import './app.component.scss';
+import CardWithAvatar from '../card/card.component';
+// import Paper from 'material-ui/Paper';
 
 const logo = require('../logo.svg');
 
@@ -29,13 +30,24 @@ class App extends React.Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Now !</h2>
         </div>
-        <p className="App-intro">
-          <h1>...</h1>
-        </p>
-        <RaisedButton
-          label="Open Drawer"
-          onClick={this.handleToggle}
-        />
+        <div className="card-holder">
+          <CardWithAvatar hideCardTitle={true} hideCardActions={true}  />
+        </div>
+        <div className="card-holder">
+          <CardWithAvatar hideCardTitle={true} hideCardActions={true}  />
+        </div>
+        <div className="card-holder">
+          <CardWithAvatar hideCardTitle={true} hideCardActions={true}  />
+        </div>
+        <div className="card-holder">
+          <CardWithAvatar hideCardTitle={true} hideCardActions={true}  />
+        </div>
+        <div className="card-holder">
+          <CardWithAvatar hideCardTitle={true} hideCardActions={true}  />
+        </div>
+        <div className="card-holder">
+          <CardWithAvatar hideCardTitle={true} hideCardActions={true}  />
+        </div>
       </div>
     );
   }
