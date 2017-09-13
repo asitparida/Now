@@ -1,0 +1,23 @@
+a {
+    text-decoration: none;
+}
+
+.news-card {
+    height: 285px;
+    overflow: hidden;
+    padding-bottom: 24px;
+    position: relative;
+}
+
+.news-card .news-title span {
+    line-height: normal !important;
+    font-size: medium !important;
+}
+
+.news-card .news-description span {
+    line-height: normal !important;
+}
+
+.news-card .news-url span {
+    text-decoration: none !important;
+}
