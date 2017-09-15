@@ -5,12 +5,14 @@ import { App } from './app/app.component';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import './index.css';
 import { Provider } from 'react-redux';
-import { reducers, Store, epics } from './state/reducer';
+import { Store } from './state/store';
+import Reducers from './state/reducer';
+import Epics from './state/epics';
 import { createEpicMiddleware, } from 'redux-observable';
 
-const epicMiddleware = createEpicMiddleware(epics);
+const epicMiddleware = createEpicMiddleware(Epics);
 let store: Redux.Store<Store.All> = Redux.createStore(
-  reducers,
+  Reducers,
   Redux.applyMiddleware(epicMiddleware)
 );
 

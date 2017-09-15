@@ -6,11 +6,12 @@ import { Drawer } from '../drawer/drawer-ipc.service';
 import { black } from 'material-ui/styles/colors';
 import './app.component.scss';
 import NewsCard from '../news-card/news-card.component';
-import { Store } from '../state/reducer';
+import { Store } from '../state/store';
 import RaisedButton from 'material-ui/RaisedButton';
 import { connect } from 'react-redux';
 import * as redux from 'redux';
 import { changeImage } from '../state/action';
+import * as Models from '../services/models';
 
 interface OwnProps { }
 
@@ -44,29 +45,13 @@ class AppComponent extends React.Component<ConnectedState & ConnectedDispatch & 
   }
   render() {
     const { news } = this.props;
-    console.log(news);
-    const newsItems = news.items.map((item, index: number) => {
-      let provider = '';
-      let thumbnail = '';
-      if (item.provider && item.provider.length > 0) {
-        provider = item.provider[0].name;
-      }
-      if (item.image) {
-        thumbnail = item.image.thumbnail.contentUrl;
-        console.log(thumbnail);
-      }
+    const cardItems = news.items.map((item, index: number) => {
+      const cardItem: Models.Card<Models.News> = new Models.Card();
+      cardItem.data = new Models.News(item);
+      cardItem.topic = 'man utd';
       return (
         <div className="card-holder" key={index}>
-          <NewsCard
-            name={item.name}
-            category={item.category}
-            topic="manchester united"
-            hideCardActions={true}
-            description={item.description}
-            provider={provider}
-            url={item.url}
-            thumbnail={thumbnail}
-          />
+          <NewsCard card={cardItem} />
         </div>
       );
     });
@@ -82,7 +67,7 @@ class AppComponent extends React.Component<ConnectedState & ConnectedDispatch & 
           <h2>Now !</h2>
           <RaisedButton label="Fetch" onClick={this.props.changeImage} />
         </div>
-        {newsItems}
+        {cardItems}
       </div>
     );
   }
