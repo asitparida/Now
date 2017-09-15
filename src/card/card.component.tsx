@@ -4,14 +4,20 @@ import FlatButton from 'material-ui/FlatButton';
 
 const bg = require('../card_bg.jpg');
 
-class CardWithAvatar extends React.Component<{
-    hideCardTitle: Boolean,
-    hideCardActions: Boolean
-}, {}> {
+interface OwnProps {
+    hideCardTitle: Boolean;
+    hideCardActions: Boolean;
+    imgsrc: string;
+}
+
+interface OwnState { }
+
+class AvatarCard extends React.Component< OwnProps, OwnState> {
     constructor(props: any) {
         super(props);
     }
     render() {
+        const { hideCardActions, hideCardTitle, imgsrc } = this.props;
         return (
             <Card>
                 <CardHeader
@@ -22,10 +28,10 @@ class CardWithAvatar extends React.Component<{
                 <CardMedia
                     overlay={<CardTitle title="Overlay title" subtitle="Overlay subtitle" />}
                 >
-                    <img src={bg} alt="" />
+                    <img src={imgsrc} alt="" />
                 </CardMedia>
-                { 
-                    !this.props.hideCardTitle &&
+                {
+                    !hideCardTitle &&
                     <CardTitle title="Card title" subtitle="Card subtitle" />
                 }
                 <CardText>
@@ -35,7 +41,7 @@ class CardWithAvatar extends React.Component<{
                     Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
                 </CardText>
                 {
-                    !this.props.hideCardActions && 
+                    !hideCardActions &&
                     <CardActions>
                         <FlatButton label="Action1" />
                         <FlatButton label="Action2" />
@@ -45,4 +51,4 @@ class CardWithAvatar extends React.Component<{
         );
     }
 }
-export default CardWithAvatar;
+export default AvatarCard;

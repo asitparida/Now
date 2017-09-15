@@ -8,17 +8,16 @@ html, body {
 }
 
 .App-header {
-  background-color: darken(#303030, 20);
-  height: 150px;
+  background-color: #f0f0f0;
   padding: 20px;
-  color: white;
+  color: #909090;
   text-align: center;
   margin-bottom: 5px;
   .nav-manu-btn {
     position: absolute;
     top:0;
     left: 0;
-    color:#fff;
+    color:#909090;
   }
 }
 
@@ -32,7 +31,7 @@ html, body {
 }
 
 .card-holder {
-  width: 33.33%;
+  width: 25%;
   float:left;
   padding: 5px;
   margin: 0 0 5px 0;

@@ -17,10 +17,11 @@
         "eofline": false,
         "forin": true,
         "indent": [ true, "spaces" ],
-        "interface-name": [true, "never-prefix"],
+        "interface-name": [false, ""],
         "jsdoc-format": true,
         "jsx-no-lambda": false,
         "jsx-no-multiline-js": false,
+        "jsx-no-string-ref": false,
         "label-position": true,
         "max-line-length": [ true, 120 ],
         "member-ordering": [
