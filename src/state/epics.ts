@@ -9,13 +9,8 @@ const fetchNewsFulfilled = (payload: any) => ({
     delta: payload
 });
 
-const counterEpic = (action$: any) =>
-    action$.ofType('INCREMENT_COUNTER')
-        .delay(2000)
-        .mapTo({ type: 'RESET_COUNTER' });
-
-const imagerEpic = (action$: any) =>
-    action$.ofType('CHANGE_IMAGE')
+const newsEpic = (action$: any) =>
+    action$.ofType('FETCH_NEWS')
         .mergeMap((action: any) => {
             if (!SPOOF_CALLS) {
                 const url = 'https://api.cognitive.microsoft.com/bing/v5.0/news/search?q=manchester+united'
@@ -29,6 +24,6 @@ const imagerEpic = (action$: any) =>
             }
         });
 
-const Epics = combineEpics(counterEpic, imagerEpic);
+const Epics = combineEpics(newsEpic);
 
 export default Epics;

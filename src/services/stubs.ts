@@ -23,5 +23,11 @@ const NewsArticles: any[] = [
     { "name": "Mourinho’s comments didn’t hurt me – Andreas Pereira", "url": "http://www.bing.com/cr?IG=BE6EC3E7984F48C0846CAF4C8F552174&CID=3E48413410DA6FDA2D474BCA11856E63&rd=1&h=rfsnMHy9b8d1AYRKBUIVQ6OAe5y_DXKqF6yuVLUprJY&v=1&r=http%3a%2f%2fdailypost.ng%2f2017%2f09%2f14%2fmourinhos-comments-didnt-hurt-andreas-pereira%2f&p=DevEx,5046.1", "image": { "thumbnail": { "contentUrl": "https://www.bing.com/th?id=ON.CF1B0E430E37E5B66E152E2D6DC768C4&pid=News", "width": 570, "height": 320 } }, "description": "Andreas Pereira has insisted that Jose Mourinho’s disappointment at his decision to leave Manchester United for Valencia is a good thing. Mourinho questioned Pereira’s desire to fight for a place at Old Trafford, after the 21-year-old left on a season ...", "about": [{ "readLink": "https://api.cognitive.microsoft.com/api/v5/entities/f8afbbd6-9c3e-02be-7cb2-eac695e2da02", "name": "Nigeria" }], "provider": [{ "_type": "Organization", "name": "dailypost.ng" }], "datePublished": "2017-09-15T07:22:00", "category": "Sports" }];
 
 export const News = {
-    value: NewsArticles
+    value: NewsArticles.sort((a, b) => {
+        const aDate: Date = new Date(a.datePublished);
+        const bDate: Date = new Date(b.datePublished);
+        return bDate.getTime() - aDate.getTime();
+    })
 };
+
+console.log(News.value);

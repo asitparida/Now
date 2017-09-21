@@ -10,36 +10,37 @@ import { Store } from '../state/store';
 import RaisedButton from 'material-ui/RaisedButton';
 import { connect } from 'react-redux';
 import * as redux from 'redux';
-import { changeImage } from '../state/action';
+import { fetchNews } from '../state/action';
 import * as Models from '../services/models';
 
 interface OwnProps { }
 
 interface ConnectedState {
-  imager: { imgSrc: string };
   news: { items: any[] };
 
 }
 
 interface ConnectedDispatch {
-  changeImage: () => void;
+  fetchNews: () => void;
 }
 
 const mapDispatchToProps = (dispatch: redux.Dispatch<Store.All>): ConnectedDispatch => ({
-  changeImage: () => {
-    dispatch(changeImage());
+  fetchNews: () => {
+    dispatch(fetchNews());
   }
 });
 
 interface OwnState { }
 
 const mapStateToProps = (state: Store.All, ownProps: OwnProps): ConnectedState => ({
-  imager: state.imager,
   news: state.news
 });
 
 class AppComponent extends React.Component<ConnectedState & ConnectedDispatch & OwnProps, OwnState> {
   self = this;
+  constructor() {
+    super();
+  }
   handleToggle() {
     Drawer.toggleDrawer();
   }
@@ -65,7 +66,7 @@ class AppComponent extends React.Component<ConnectedState & ConnectedDispatch & 
             </IconButton>
           </div>
           <h2>Now !</h2>
-          <RaisedButton label="Fetch" onClick={this.props.changeImage} />
+          <RaisedButton label="Fetch" onClick={this.props.fetchNews} />
         </div>
         {cardItems}
       </div>
