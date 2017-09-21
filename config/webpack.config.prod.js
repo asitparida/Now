@@ -154,6 +154,7 @@ module.exports = {
           /\.gif$/,
           /\.jpe?g$/,
           /\.png$/,
+          /\.woff2$/,
         ],
         loader: require.resolve('file-loader'),
         options: {
@@ -168,6 +169,14 @@ module.exports = {
         options: {
           limit: 10000,
           name: 'static/media/[name].[hash:8].[ext]',
+        },
+      },
+      {
+        test: [/\.woff2$/],
+        loader: require.resolve('url-loader'),
+        options: {
+          limit: 10000,
+          name: '/static/media/[name].[hash:8].[ext]',
         },
       },
       // Compile .tsx?

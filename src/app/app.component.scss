@@ -8,16 +8,15 @@ html, body {
 }
 
 .App-header {
-  background-color: #f0f0f0;
+  background-color: #3498db;
   padding: 20px;
-  color: #909090;
+  color: #fff;
   text-align: center;
-  margin-bottom: 5px;
   .nav-manu-btn {
     position: absolute;
     top:0;
     left: 0;
-    color:#909090;
+    color:#fff;
   }
 }
 
@@ -30,10 +29,83 @@ html, body {
   to { transform: rotate(360deg); }
 }
 
-.card-holder {
-  width: 25%;
+.card-item-holder {
   float:left;
-  padding: 5px;
-  margin: 0 0 5px 0;
+  padding: 10px;
+  margin: 0;
   box-sizing: border-box;
+}
+
+@media only screen and (max-width: 600px) {
+  .card-item-holder {
+    width: 100%;
+    &.half {
+      width: 50%;
+    }
+  }
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+  .card-item-holder {
+    width: 50%;
+    &.half {
+      width: 50%;
+    }
+  }
+}
+
+@media (min-width: 901px) and (max-width: 1200px) {
+  .card-item-holder {
+    width: 33.33%;
+    &.half {
+      width: 33.33%;
+    }
+  }
+}
+
+@media (min-width: 1201px) and (max-width: 1600px) {
+  .card-item-holder {
+    width: 25%;
+    &.half {
+      width: 25%;
+    }
+  }
+}
+
+@media (min-width: 1601px){
+  .card-item-holder {
+    width: 20%;
+    &.half {
+      width: 20%;
+    }
+  }
+}
+.cards-holder {
+  display: inline-block;
+  padding-bottom: 10px;
+  float: left;
+}
+.cards-holder:after {
+  content: ' ';
+  clear: both;
+}
+
+.card-title img{
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+.card-title i {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+.card-title .card-title-img {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  margin-right: 10px;
 }

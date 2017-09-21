@@ -22,4 +22,5 @@ export class Card<T> {
     topic: String = '';
     hideCardActions: Boolean = true;
     data: T;
+    bgAccent: string = '#f6f6f6';
 }

@@ -1,0 +1,31 @@
+a {
+    text-decoration: none;
+}
+
+.mail-card {
+    height: 126px;
+    overflow: hidden;
+    padding-bottom: 24px;
+    position: relative;
+}
+
+.mail-card .mail-title span {
+    line-height: normal !important;
+    font-size: 48px !important;
+    font-weight: 100;
+    color: #3498db !important;
+}
+
+.mail-card .mail-description {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.mail-card .mail-description span {
+    line-height: normal !important;
+    font-size: large !important;
+}
+
+.mail-card .news-url span {
+    text-decoration: none !important;
+}

@@ -11,11 +11,13 @@ interface OwnProps {
 interface OwnState { }
 
 const CardTextStyles: any = {
-    backgroundColor: '#f6f6f6',
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    fontSize: 'small'
+    backgroundColor: '#fff',
+    fontSize: 'small',
+    color: '#565656'
+};
+
+const NewsCardStyles: any = {
+    boxShadow: 'rgba(231, 76, 60, 0.12) 0px 1px 6px, rgba(231, 76, 60, 0.12) 0px 1px 4px'
 };
 
 class NewsCard extends React.Component<OwnProps, OwnState> {
@@ -24,9 +26,10 @@ class NewsCard extends React.Component<OwnProps, OwnState> {
     }
     render() {
         const { card } = this.props;
+        CardTextStyles.backgroundColor = card.bgAccent;
         return (
             <a href={card.data.url} target="_blank" className="news-url">
-                <Card className="news-card">
+                <Card className="news-card" style={NewsCardStyles}>
                     <CardHeader
                         title={card.data.provider}
                         subtitle={card.data.category}
@@ -36,7 +39,8 @@ class NewsCard extends React.Component<OwnProps, OwnState> {
                         <CardTitle
                             title={card.data.name}
                             style={{
-                                fontSize: 'large'
+                                fontSize: 'large',
+                                paddingBottom: 0
                             }}
                         />
                     </div>
