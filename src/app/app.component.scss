@@ -72,7 +72,7 @@ html, body {
   }
 }
 
-@media (min-width: 1601px){
+@media (min-width: 1601px) and (max-width: 1900px){
   .card-item-holder {
     width: 20%;
     &.half {
@@ -80,8 +80,17 @@ html, body {
     }
   }
 }
+
+@media (min-width: 1901px){
+  .card-item-holder {
+    width: 16.66%;
+    &.half {
+      width: 16.66%;
+    }
+  }
+}
+
 .cards-holder {
-  display: inline-block;
   padding-bottom: 10px;
   float: left;
 }
