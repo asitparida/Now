@@ -1,22 +1,22 @@
 import * as React from 'react';
 import { Card, CardTitle, CardText } from 'material-ui/Card';
-import * as Models from '../services/models';
+// import * as Models from '../services/models';
 import './github-card.component.scss';
 
 interface OwnProps {
     title: string;
     count: string;
     color: string;
+    backgroundColor: string;
 }
 
 interface OwnState { }
 
 const MailCardStyles: any = {
-    boxShadow: 'rgba(0, 115, 198, 0.12) 0px 1px 6px, rgba(0, 115, 198, 0.12) 0px 1px 4px'
+    boxShadow: '0 1px 3px 0 rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12)'
 };
 
 const CardTextStyles: any = {
-    backgroundColor: '#fff',
     fontSize: 'large',
     fontWeight: 100,
     color: '#565656'
@@ -27,13 +27,14 @@ class GithubCard extends React.Component<OwnProps, OwnState> {
         super(props);
     }
     render() {
-        const { title, count, color } = this.props;
-        let rgb = Models.hexToRgb(color);
-        if (!rgb) {
-            rgb = { r: 0, g: 0, b: 0};
-        }
-        const rgba = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.12)`;
-        MailCardStyles.boxShadow = rgba + ' 0px 1px 6px, ' + rgba + ' 0px 1px 4px';
+        const { title, count, color, backgroundColor } = this.props;
+        // let rgb = Models.hexToRgb('#000');
+        // if (!rgb) {
+        //     rgb = { r: 0, g: 0, b: 0};
+        // }
+        // const rgba = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.12)`;
+        // MailCardStyles.boxShadow = rgba + ' 0px 1px 6px, ' + rgba + ' 0px 1px 4px';
+        MailCardStyles.backgroundColor = backgroundColor;
         return (
             <a href="" target="_blank" className="news-url">
                 <Card className="mail-card" style={MailCardStyles}>

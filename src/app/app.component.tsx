@@ -1,5 +1,5 @@
 import * as React from 'react';
-import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
+// import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
 // import FileFileDownload from 'material-ui/svg-icons/file/file-download';
 import ActionSettings from 'material-ui/svg-icons/action/settings';
 import AvAlbum from 'material-ui/svg-icons/av/album';
@@ -16,11 +16,7 @@ import { connect } from 'react-redux';
 import * as redux from 'redux';
 import { fetchNews } from '../state/action';
 import * as Models from '../services/models';
-import { OutlookMailItems, GoogleMailItems, SlackItems, GithubStats } from '../services/stubs';
-const outlook = require('../../node_modules/simple-icons/icons/microsoftoutlook.svg');
-const gmail = require('../../node_modules/simple-icons/icons/gmail.svg');
-const slack = require('../../node_modules/simple-icons/icons/slack.svg');
-const github = require('../../node_modules/simple-icons/icons/github.svg');
+import * as StubCollections from '../services/collections';
 
 interface OwnProps { }
 
@@ -68,10 +64,10 @@ class AppComponent extends React.Component<ConnectedState & ConnectedDispatch & 
 		if (targetHeaderId !== this.headerId) {
 			this.headerId = targetHeaderId;
 			const fgElements = document.querySelectorAll('[data-tag="header-fg"]');
-			if (fgElements && fgElements.length > 0 ) {
+			if (fgElements && fgElements.length > 0) {
 				Array.from(fgElements).forEach((elem: HTMLElement) => {
 					if (elem instanceof SVGElement) {
-						elem.style.fill = color;	
+						elem.style.fill = color;
 					} else {
 						elem.style.color = color;
 					}
@@ -101,50 +97,11 @@ class AppComponent extends React.Component<ConnectedState & ConnectedDispatch & 
 		const cardHolders: Models.CardsHolder[] = [];
 		let cardCollectionTemplate: JSX.Element[] = [];
 		const { news } = this.props;
-		if (GithubStats.length > 0) {
-			let cardCollection = new Models.CardsHolder();
-			cardCollection.color = '#181717';
-			cardCollection.backgroundColor = '#fcf3d0';
-			cardCollection.items = GithubStats;
-			cardCollection.title = 'github';
-			cardCollection.type = Models.CardHolderType.GIT;
-			let outlookUrl = 'url(' + github + ')';
-			cardCollection.headerIcon = <div className="card-title-img" style={{ WebkitMaskImage: outlookUrl, backgroundColor: cardCollection.color }} />;
-			cardHolders.push(cardCollection);
-		}
-		if (SlackItems.length > 0) {
-			let cardCollection = new Models.CardsHolder();
-			cardCollection.color = '#56B68B';
-			cardCollection.backgroundColor = '#eef7f3';
-			cardCollection.items = SlackItems;
-			cardCollection.title = 'lean-case.slack.com';
-			cardCollection.type = Models.CardHolderType.SLACK;
-			let outlookUrl = 'url(' + slack + ')';
-			cardCollection.headerIcon = <div className="card-title-img" style={{ WebkitMaskImage: outlookUrl, backgroundColor: cardCollection.color }} />;
-			cardHolders.push(cardCollection);
-		}
-		if (OutlookMailItems.length > 0) {
-
-			let cardCollection = new Models.CardsHolder();
-			cardCollection.color = '#0072C6';
-			cardCollection.backgroundColor = '#e1f0fa';
-			cardCollection.items = OutlookMailItems;
-			cardCollection.title = 'Outlook';
-			cardCollection.type = Models.CardHolderType.MAILBOX;
-			let outlookUrl = 'url(' + outlook + ')';
-			cardCollection.headerIcon = <div className="card-title-img" style={{ WebkitMaskImage: outlookUrl, backgroundColor: cardCollection.color }} />;
-			cardHolders.push(cardCollection);
-
-			cardCollection = new Models.CardsHolder();
-			cardCollection.color = '#D14836';
-			cardCollection.backgroundColor = '#f8e6e3';
-			cardCollection.items = GoogleMailItems;
-			cardCollection.title = 'Google Mail';
-			cardCollection.type = Models.CardHolderType.MAILBOX;
-			outlookUrl = 'url(' + gmail + ')';
-			cardCollection.headerIcon = <div className="card-title-img" style={{ WebkitMaskImage: outlookUrl, backgroundColor: cardCollection.color }} />;
-			cardHolders.push(cardCollection);
-		}
+		cardHolders.push(StubCollections.OutlookCardsCollection);
+		cardHolders.push(StubCollections.CompanySlackCardsCollection);
+		cardHolders.push(StubCollections.GithubCardsCollection);
+		cardHolders.push(StubCollections.SlackCardsCollection);
+		cardHolders.push(StubCollections.GoogleMailCardsCollection);
 		if (news.items.length > 0) {
 			const cardCollection = new Models.CardsHolder();
 			cardCollection.color = '#c0392b';
@@ -160,17 +117,17 @@ class AppComponent extends React.Component<ConnectedState & ConnectedDispatch & 
 		cardCollectionTemplate = cardHolders.map((holder: Models.CardsHolder, index: number) => {
 			// tslint:disable:jsx-wrap-multiline jsx-alignment no-unused-expression
 			if (holder.type === Models.CardHolderType.NEWS) {
-				return <NewsDrawer ref={(dom) => { dom && this.cardHolderRefs.push(dom); }} key={index} 
-						title={holder.title} cards={holder.items} type="sync" color={holder.color} backgroundColor={holder.backgroundColor} headerIcon={holder.headerIcon} />;
+				return <NewsDrawer ref={(dom) => { dom && this.cardHolderRefs.push(dom); }} key={index}
+					title={holder.title} cards={holder.items} type="sync" color={holder.color} backgroundColor={holder.backgroundColor} headerIcon={holder.headerIcon} />;
 			} else if (holder.type === Models.CardHolderType.SLACK) {
-				return <SlackDrawer ref={(dom) => { dom && this.cardHolderRefs.push(dom); }} key={index} 
-						title={holder.title} cards={holder.items} color={holder.color} backgroundColor={holder.backgroundColor} headerIcon={holder.headerIcon} />;
+				return <SlackDrawer ref={(dom) => { dom && this.cardHolderRefs.push(dom); }} key={index}
+					title={holder.title} cards={holder.items} color={holder.color} backgroundColor={holder.backgroundColor} headerIcon={holder.headerIcon} />;
 			} else if (holder.type === Models.CardHolderType.GIT) {
-				return <GithubDrawer ref={(dom) => { dom && this.cardHolderRefs.push(dom); }} key={index} 
-						title={holder.title} cards={holder.items} color={holder.color} backgroundColor={holder.backgroundColor} headerIcon={holder.headerIcon} />;
+				return <GithubDrawer ref={(dom) => { dom && this.cardHolderRefs.push(dom); }} key={index}
+					title={holder.title} cards={holder.items} color={holder.color} backgroundColor={holder.backgroundColor} headerIcon={holder.headerIcon} />;
 			} else {
-				return <MailsDrawer ref={(dom) => { dom && this.cardHolderRefs.push(dom); }} key={index} 
-						title={holder.title} cards={holder.items} color={holder.color} backgroundColor={holder.backgroundColor} headerIcon={holder.headerIcon} />;
+				return <MailsDrawer ref={(dom) => { dom && this.cardHolderRefs.push(dom); }} key={index}
+					title={holder.title} cards={holder.items} color={holder.color} backgroundColor={holder.backgroundColor} headerIcon={holder.headerIcon} />;
 			}
 			// tslint:enable:jsx-wrap-multiline jsx-alignment no-unused-expression
 		}
@@ -178,20 +135,17 @@ class AppComponent extends React.Component<ConnectedState & ConnectedDispatch & 
 		return (
 			<div className="App">
 				<AppDrawer />
-				<div className="App-header" style={{backgroundColor: this.headerBackground}} data-tag="header-bg">
-					<div className="nav-menu-btn pull-left" >
-						<IconButton onClick={this.handleToggle} >
-							<NavigationMenu color={this.headerForeground} data-tag="header-fg" />
-						</IconButton>
-					</div>
-					<h2 style={{color: this.headerForeground, textTransform: 'lowercase'}} data-tag2="header-title" data-tag="header-fg">{this.headerTitle}</h2>
-					<div className="nav-menu-btn pull-right" >
-						<IconButton onClick={this.props.fetchNews} >
-							<AvAlbum color={this.headerForeground} data-tag="header-fg" />
-						</IconButton>
-						<IconButton >
-							<ActionSettings color={this.headerForeground} data-tag="header-fg" />
-						</IconButton>
+				<div className="App-header" style={{ backgroundColor: this.headerBackground }} data-tag="header-bg">
+					<div className="content">
+						<h2 style={{ color: this.headerForeground, textTransform: 'lowercase' }} data-tag2="header-title" data-tag="header-fg">{this.headerTitle}</h2>
+						<div className="nav-menu-btn pull-right" >
+							<IconButton onClick={this.props.fetchNews} >
+								<AvAlbum color={this.headerForeground} data-tag="header-fg" />
+							</IconButton>
+							<IconButton onClick={this.handleToggle}>
+								<ActionSettings color={this.headerForeground} data-tag="header-fg" />
+							</IconButton>
+						</div>
 					</div>
 				</div>
 				<div className="App-content">

@@ -21,15 +21,17 @@ const CardHolderTypeStyles = {
 const CardTitleStyles = {
     padding: '0',
     height: '60px',
-    width: '100%',
+    display: 'block',
+    margin: '0 auto',
+    width: '80%',
+    maxWidth: '1200px',
     boxSizing: 'border-box',
     borderBottom: '1px dashed rgba(0,0,0, 0.33)',
     marginBottom: '10px'
 };
 
 const CardWrapperStyles = {
-    padding: '0',
-    margin: '0 -10px'
+    padding: '0'
 };
 
 const CardHolderStyles = {
@@ -78,8 +80,13 @@ class NewsDrawer extends React.Component<OwnProps, OwnState> {
                         </div>
                 </div>
                 <div className="cards-wrapper" style={CardWrapperStyles}>
-                    {cardItems}
+                <div className="cards-wrapper-inner">
+                    {
+                        cards.length > 0 &&
+                        cardItems
+                    }
                 </div>
+            </div>
             </div>
         );
     }

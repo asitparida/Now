@@ -15,7 +15,10 @@ const CardHolderTitleStyles = {
 const CardTitleStyles = {
     padding: '0',
     height: '60px',
-    width: '100%',
+    display: 'block',
+    margin: '0 auto',
+    width: '80%',
+    maxWidth: '1200px',
     boxSizing: 'border-box',
     borderBottom: '1px dashed rgba(0,0,0, 0.33)',
     marginBottom: '10px',
@@ -23,8 +26,7 @@ const CardTitleStyles = {
 };
 
 const CardWrapperStyles = {
-    padding: '0',
-    margin: '0 -10px'
+    padding: '0'
 };
 
 const CardHolderStyles = {
@@ -51,7 +53,7 @@ class SlackDrawer extends React.Component<OwnProps, OwnState> {
     }
     render() {
         const { cards, color, title, backgroundColor, headerIcon } = this.props;
-        CardHolderStyles.backgroundColor = backgroundColor;
+        // CardHolderStyles.backgroundColor = backgroundColor;
         CardHolderTitleStyles.color = color;
         const cardItems = cards.map((item, index: number) => {
             const cardItem: Models.Card<Models.MailBoxItem> = new Models.Card();
@@ -59,7 +61,7 @@ class SlackDrawer extends React.Component<OwnProps, OwnState> {
             cardItem.topic = title;
             return (
                 <div className="card-item-holder half" key={index}>
-                    <SlackCard title={cardItem.data.title} count={cardItem.data.count} color={color} />
+                    <SlackCard title={cardItem.data.title} count={cardItem.data.count} color={color} backgroundColor={backgroundColor} />
                 </div>
             );
         });
@@ -74,10 +76,12 @@ class SlackDrawer extends React.Component<OwnProps, OwnState> {
                     </div>
                 </div>
                 <div className="cards-wrapper" style={CardWrapperStyles}>
-                    {
-                        cards.length > 0 &&
-                        cardItems
-                    }
+                    <div className="cards-wrapper-inner">
+                        {
+                            cards.length > 0 &&
+                            cardItems
+                        }
+                    </div>
                 </div>
             </div>
         );
