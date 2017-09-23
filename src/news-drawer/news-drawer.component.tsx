@@ -6,7 +6,9 @@ const CardHolderTitleStyles = {
     float: 'left',
     fontSize: 'large',
     lineHeight: '60px',
-    color: '#808080'
+    color: '#808080',
+    textTransform: 'lowercase',
+    letterSpacing: '1px'
 };
 
 const CardHolderTypeStyles = {
@@ -27,14 +29,14 @@ const CardTitleStyles = {
 
 const CardWrapperStyles = {
     padding: '0',
-    margin: '0 -5px'
+    margin: '0 -10px'
 };
 
 const CardHolderStyles = {
     padding: '0 20px 10px 20px',
     width: '100%',
     boxSizing: 'border-box',
-    backgroundColor: '#fdf3f2'
+    backgroundColor: ''
 };
 
 interface OwnProps {
@@ -42,35 +44,37 @@ interface OwnProps {
     title: string;
     type: string;
     color: string;
+    backgroundColor: string;
+    headerIcon: JSX.Element;
 }
 
 interface OwnState { }
 
-class CardsDrawer extends React.Component<OwnProps, OwnState> {
+class NewsDrawer extends React.Component<OwnProps, OwnState> {
     constructor(props: any) {
         super(props);
     }
     render() {
-        const { cards, title, type, color } = this.props;
+        const { cards, title, type, color, backgroundColor, headerIcon } = this.props;
         CardHolderTitleStyles.color = color;
         CardHolderTypeStyles.color = color;
+        CardHolderStyles.backgroundColor = backgroundColor;
         const cardItems = cards.map((item, index: number) => {
             const cardItem: Models.Card<Models.News> = new Models.Card();
             cardItem.data = new Models.News(item);
-            cardItem.topic = 'man utd';
-            cardItem.bgAccent = '#fff';
             return (
               <div className="card-item-holder" key={index}>
-                <NewsCard card={cardItem} />
+                <NewsCard card={cardItem} color={color} />
               </div>
             );
           });
         return (
             <div className="cards-holder" style={CardHolderStyles}>
                 <div className="card-title" style={CardTitleStyles}>
-                    <span style={CardHolderTitleStyles}>
-                        <i className="material-icons" style={{ color: color}}>fitness_center</i>{title}</span>
-                    <span style={CardHolderTypeStyles}> <i className="material-icons">{type}</i></span>
+                    <span style={CardHolderTitleStyles}>{headerIcon} {title}</span>
+                        <div className="card-action-refresh" style={{color: color}}>
+                            <i className="material-icons">{type}</i>
+                        </div>
                 </div>
                 <div className="cards-wrapper" style={CardWrapperStyles}>
                     {cardItems}
@@ -79,4 +83,4 @@ class CardsDrawer extends React.Component<OwnProps, OwnState> {
         );
     }
 }
-export default CardsDrawer;
+export default NewsDrawer;

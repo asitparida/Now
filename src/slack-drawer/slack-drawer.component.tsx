@@ -1,5 +1,5 @@
 import * as React from 'react';
-import MailCard from '../mail-card/mail-card.component';
+import SlackCard from '../slack-card/slack-card.component';
 import * as Models from '../services/models';
 
 const outlookColor = '#0072C6';
@@ -44,7 +44,7 @@ interface OwnProps {
 
 interface OwnState { }
 
-class MailsDrawer extends React.Component<OwnProps, OwnState> {
+class SlackDrawer extends React.Component<OwnProps, OwnState> {
     constructor(props: any) {
         super(props);
     }
@@ -58,7 +58,7 @@ class MailsDrawer extends React.Component<OwnProps, OwnState> {
             cardItem.topic = title;
             return (
                 <div className="card-item-holder half" key={index}>
-                    <MailCard title={cardItem.data.title} count={cardItem.data.count} color={color} />
+                    <SlackCard title={cardItem.data.title} count={cardItem.data.count} color={color} />
                 </div>
             );
         });
@@ -82,4 +82,4 @@ class MailsDrawer extends React.Component<OwnProps, OwnState> {
         );
     }
 }
-export default MailsDrawer;
+export default SlackDrawer;

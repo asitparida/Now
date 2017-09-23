@@ -21,3 +21,23 @@ export const News = {
         return bDate.getTime() - aDate.getTime();
     })
 };
+
+export const OutlookMailItems: any[] = [
+    { title: 'Inbox', count: '02'},
+    { title: 'EggHead', count: '02'},
+    { title: 'asitkparida@live.in', count: '02'}
+];
+
+export const GoogleMailItems: any[] = [
+    { title: 'Primary', count: '02'},
+    { title: 'Social', count: '02'},
+    { title: 'Promotions', count: '02'}
+];
+
+export const SlackItems: any[] = [
+    { title: '#general', count: '02'},
+    { title: '#random', count: '02'},
+    { title: '#steve', count: '02'},
+    { title: '@eckhard', count: '02'},
+    { title: '@andriy', count: '02'}
+];

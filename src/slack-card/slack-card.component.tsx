@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Card, CardTitle, CardText } from 'material-ui/Card';
 import * as Models from '../services/models';
-import './mail-card.component.scss';
+import './slack-card.component.scss';
 
 interface OwnProps {
     title: string;
@@ -22,7 +22,7 @@ const CardTextStyles: any = {
     color: '#565656'
 };
 
-class MailCard extends React.Component<OwnProps, OwnState> {
+class SlackCard extends React.Component<OwnProps, OwnState> {
     constructor(props: any) {
         super(props);
     }
@@ -56,4 +56,4 @@ class MailCard extends React.Component<OwnProps, OwnState> {
         );
     }
 }
-export default MailCard;
+export default SlackCard;

@@ -67,12 +67,12 @@ html, body {
   .card-item-holder {
     width: 25%;
     &.half {
-      width: 25%;
+      width: 20%;
     }
   }
 }
 
-@media (min-width: 1601px) and (max-width: 1900px){
+@media (min-width: 1601px){
   .card-item-holder {
     width: 20%;
     &.half {
@@ -80,17 +80,8 @@ html, body {
     }
   }
 }
-
-@media (min-width: 1901px){
-  .card-item-holder {
-    width: 16.66%;
-    &.half {
-      width: 16.66%;
-    }
-  }
-}
-
 .cards-holder {
+  display: inline-block;
   padding-bottom: 10px;
   float: left;
 }
@@ -109,12 +100,28 @@ html, body {
 .card-title i {
   display: inline-block;
   vertical-align: middle;
-  margin-right: 10px;
 }
 .card-title .card-title-img {
   display: inline-block;
   width: 20px;
   height: 20px;
   vertical-align: middle;
+  margin-right: 10px;
+}
+.card-action-refresh {
+  width: 60px;
+  text-align: center;
+  line-height: 60px;
+  height: 60px;
+  float: right;
+  cursor: pointer;
+}
+.card-action-refresh:hover,
+.card-action-refresh:focus,
+.card-action-refresh:active {
+  background: rgba(0,0,0,0.10);
+}
+
+.marginRight10 {
   margin-right: 10px;
 }
