@@ -11,6 +11,7 @@ import NewsDrawer from '../news-drawer/news-drawer.component';
 import MailsDrawer from '../mails-drawer/mails-drawer.component';
 import SlackDrawer from '../slack-drawer/slack-drawer.component';
 import GithubDrawer from '../github-drawer/github-drawer.component';
+import SearchDrawer from '../search-drawer/search-drawer.component';
 import { Store } from '../state/store';
 import { connect } from 'react-redux';
 import * as redux from 'redux';
@@ -42,7 +43,7 @@ const mapStateToProps = (state: Store.All, ownProps: OwnProps): ConnectedState =
 
 class AppComponent extends React.Component<ConnectedState & ConnectedDispatch & OwnProps, OwnState> {
 	self = this;
-	headerForeground: string = '#0073c6';
+	headerForeground: string = '#000000';
 	headerBackground: string = '#ffffff';
 	headerId: string = '';
 	headerTitle: string = '( now )';
@@ -57,7 +58,7 @@ class AppComponent extends React.Component<ConnectedState & ConnectedDispatch & 
 				if (changeTitleBack) {
 					(title as HTMLElement).innerHTML = '( now )';
 				} else {
-					(title as HTMLElement).innerHTML = targetHeaderId;
+					(title as HTMLElement).innerHTML = targetHeaderId || '( now )';
 				}
 			}
 		}
@@ -112,10 +113,9 @@ class AppComponent extends React.Component<ConnectedState & ConnectedDispatch & 
 			cardCollection.headerIcon = <i className="material-icons marginRight10" style={{ color: '#c0392b' }}>fitness_center</i>;
 			cardHolders.push(cardCollection);
 		}
-		this.headerForeground = cardHolders[0].color;
-		this.headerId = cardHolders[0].title;
+		this.headerId = cardHolders[1].title;
+		// tslint:disable:jsx-wrap-multiline jsx-alignment no-unused-expression
 		cardCollectionTemplate = cardHolders.map((holder: Models.CardsHolder, index: number) => {
-			// tslint:disable:jsx-wrap-multiline jsx-alignment no-unused-expression
 			if (holder.type === Models.CardHolderType.NEWS) {
 				return <NewsDrawer ref={(dom) => { dom && this.cardHolderRefs.push(dom); }} key={index}
 					title={holder.title} cards={holder.items} type="sync" color={holder.color} backgroundColor={holder.backgroundColor} headerIcon={holder.headerIcon} />;
@@ -129,7 +129,6 @@ class AppComponent extends React.Component<ConnectedState & ConnectedDispatch & 
 				return <MailsDrawer ref={(dom) => { dom && this.cardHolderRefs.push(dom); }} key={index}
 					title={holder.title} cards={holder.items} color={holder.color} backgroundColor={holder.backgroundColor} headerIcon={holder.headerIcon} />;
 			}
-			// tslint:enable:jsx-wrap-multiline jsx-alignment no-unused-expression
 		}
 		);
 		return (
@@ -149,6 +148,7 @@ class AppComponent extends React.Component<ConnectedState & ConnectedDispatch & 
 					</div>
 				</div>
 				<div className="App-content">
+					<SearchDrawer ref={(dom) => { dom && this.cardHolderRefs.push(dom); }} title="search" color="#000000" backgroundColor="#ffffff" />
 					{
 						cardHolders.length > 0 &&
 						cardCollectionTemplate
@@ -156,6 +156,7 @@ class AppComponent extends React.Component<ConnectedState & ConnectedDispatch & 
 				</div>
 			</div>
 		);
+		// tslint:enable:jsx-wrap-multiline jsx-alignment no-unused-expression
 	}
 }
 export const App = connect(mapStateToProps, mapDispatchToProps)(AppComponent);
