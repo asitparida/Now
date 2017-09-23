@@ -208,4 +208,55 @@ a {
   width:100%;
   height: 500px;
   background-size: cover;
+  overflow: hidden;
+  position: relative;
+  video {
+    width: 100%;
+  }
+  .search-container {
+    width:100%;
+    height: 100%;
+    position: absolute;
+    top:0;
+    left: 0;
+    background: rgba(0,0,0,0.10);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .input-holder {
+      width: 600px;
+      height: 60px;
+      position: absolute;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.50);
+      background: rgba(255, 255, 255, 0.10);
+      box-sizing: border-box;
+    }
+    input {
+      padding-left: 20px;
+      box-sizing: border-box;
+      width: calc(100% - 48px);
+      line-height: 58px;
+      border: none;
+      color: #fff;
+      background: transparent;
+      font-size: x-large;
+      text-align: left;
+      outline: none;
+      font-weight: 100;
+      vertical-align: middle;
+      &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+        color: rgba(255, 255, 255, 0.50);
+        letter-spacing: 2px;
+        font-weight: 100;
+      }
+    }
+    .search-mic {
+      position: absolute;
+      right: 0;
+      line-height: 60px !important;
+      border: none !important;
+      margin-top: -6px !important;
+      vertical-align: middle;
+    }
+  }
 }

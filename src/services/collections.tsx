@@ -11,6 +11,8 @@ const gmail = require('../../node_modules/simple-icons/icons/gmail.svg');
 const slack = require('../../node_modules/simple-icons/icons/slack.svg');
 const github = require('../../node_modules/simple-icons/icons/github.svg');
 
+// https://pixabay.com/api/videos/?key=6526482-ec59b39ce04ede50e0ed84c36&image_type=photo&pretty=true&editors_choice=true
+
 if (GithubStats.length > 0) {
     let cardCollection = new Models.CardsHolder();
     cardCollection.color = '#181717';
