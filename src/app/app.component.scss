@@ -7,18 +7,48 @@ html, body {
   height: 80px;
 }
 
+.pull-left {
+  float: left;
+}
+
+.pull-right {
+  float: right;
+}
+
 .App-header {
-  background-color: #f0f0f0;
-  padding: 20px;
-  color: #909090;
-  text-align: center;
-  margin-bottom: 5px;
-  .nav-manu-btn {
-    position: absolute;
-    top:0;
-    left: 0;
-    color:#909090;
+  width: 100%;
+  height: 72px;
+  box-sizing: border-box;
+  top: 0;
+  position: fixed;
+  z-index: 999;
+  padding: 0 5px 0 19px;
+  .content {
+    display: block;
+    margin: 0 auto;
+    width: 80%;
+    max-width: 1200px;
   }
+  .nav-menu-btn {
+    height: 72px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  h2 {
+    display: inline-block;
+    margin: 0px;
+    -webkit-margin-before:0;
+    -webkit-margin-after:0;
+    line-height: 72px;
+    letter-spacing: 1px;
+  }
+}
+
+.App-content {
+  margin-top: 72px;
+  background: #f8f8f8;
+  display: inline-block;
 }
 
 .App-intro {
@@ -30,10 +60,204 @@ html, body {
   to { transform: rotate(360deg); }
 }
 
-.card-holder {
-  width: 25%;
+.card-item-holder {
   float:left;
-  padding: 5px;
-  margin: 0 0 5px 0;
+  padding: 10px;
+  margin: 0;
   box-sizing: border-box;
+}
+
+@media only screen and (max-width: 600px) {
+  .card-item-holder {
+    width: 100%;
+    &.half {
+      width: 50%;
+    }
+  }
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+  .card-item-holder {
+    width: 50%;
+    &.half {
+      width: 50%;
+    }
+  }
+}
+
+@media (min-width: 901px) and (max-width: 1200px) {
+  .card-item-holder {
+    width: 33.33%;
+    &.half {
+      width: 33.33%;
+    }
+  }
+}
+
+@media (min-width: 1201px) and (max-width: 1600px) {
+  .card-item-holder {
+    width: 33.33%;
+    &.half {
+      width: 25%;
+    }
+  }
+}
+
+@media (min-width: 1601px){
+  .card-item-holder {
+    width: 25%;
+    &.half {
+      width: 20%;
+    }
+  }
+}
+.cards-holder {
+  display: inline-block;
+  padding-bottom: 10px;
+  float: left;
+  margin: 0 0 15px 0px;
+  &:last-of-type {
+    margin-bottom: 0;
+    padding-bottom: 62px !important;
+  }
+  &:first-of-type {
+    padding-top: 72px !important;
+  }
+}
+.cards-holder:after {
+  content: ' ';
+  clear: both;
+}
+
+.card-title img{
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+.card-title i {
+  display: inline-block;
+  vertical-align: middle;
+}
+.card-title .card-title-img {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+.card-action-refresh {
+  text-align: center;
+  line-height: 60px;
+  height: 60px;
+  float: right;
+  cursor: pointer;
+}
+
+.marginRight10 {
+  margin-right: 10px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.mail-card {
+  height: 106px;
+  overflow: hidden;
+  padding-bottom: 24px;
+  position: relative;
+}
+
+.mail-card .mail-title span {
+  line-height: normal !important;
+  font-size: 36px !important;
+  font-weight: 100;
+  color: inherit !important;
+}
+
+.mail-card .mail-description {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.mail-card .mail-description div {
+  line-height: normal !important;
+  font-size: medium !important;
+  text-transform: lowercase;
+  letter-spacing: 1px;
+  padding: 10px 16px !important;
+}
+
+.mail-card .news-url span {
+  text-decoration: none !important;
+}
+
+.cards-wrapper {
+  display: block;
+  margin: 0 auto !important;
+  width: 80%;
+  max-width: 1200px;
+  .cards-wrapper-inner {
+    margin: 0 -10px;
+  }
+}
+
+.cards-img-inner {
+  width:100%;
+  height: 500px;
+  max-height: 60vh;
+  background-size: cover;
+  overflow: hidden;
+  position: relative;
+  video {
+    width: 100%;
+  }
+  .search-container {
+    width:100%;
+    height: 100%;
+    position: absolute;
+    top:0;
+    left: 0;
+    background: rgba(0,0,0,0.10);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .input-holder {
+      width: 600px;
+      height: 60px;
+      position: absolute;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.50);
+      background: rgba(255, 255, 255, 0.10);
+      box-sizing: border-box;
+    }
+    input {
+      padding-left: 20px;
+      box-sizing: border-box;
+      width: calc(100% - 48px);
+      line-height: 58px;
+      border: none;
+      color: #fff;
+      background: transparent;
+      font-size: x-large;
+      text-align: left;
+      outline: none;
+      font-weight: 100;
+      vertical-align: middle;
+      &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+        color: rgba(255, 255, 255, 0.50);
+        letter-spacing: 2px;
+        font-weight: 100;
+      }
+    }
+    .search-mic {
+      position: absolute;
+      right: 0;
+      line-height: 60px !important;
+      border: none !important;
+      margin-top: -6px !important;
+      vertical-align: middle;
+    }
+  }
 }

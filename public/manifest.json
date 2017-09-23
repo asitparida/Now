@@ -6,5 +6,10 @@
   "chrome_url_overrides": {
       "newtab": "index.html"
   },
+  "icons": {
+    "16": "now_icon16.png",
+    "48": "now_icon48.png",
+   "128": "now_icon128.png" 
+  },
   "manifest_version": 2
 }

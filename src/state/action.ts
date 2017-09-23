@@ -1,14 +1,4 @@
-export type Action = 
-{
-    type: 'INCREMENT_COUNTER',
-    delta: number,
-} |
-{
-    type: 'RESET_COUNTER',
-} |
-{
-    type: 'CHANGE_IMAGE',
-} |
+export type Action =
 {
     type: 'IMAGE_CHANGED',
     delta: string
@@ -16,20 +6,10 @@ export type Action =
 {
     type: 'NEWS_AVAIALABLE',
     delta: any
+}  |
+{
+    type: 'FETCH_NEWS'
 } ;
-
-export const incrementCounter = (delta: number): Action => ({
-    type: 'INCREMENT_COUNTER',
-    delta,
-});
-
-export const resetCounter = (): Action => ({
-    type: 'RESET_COUNTER',
-});
-
-export const changeImage = (): Action => ({
-    type: 'CHANGE_IMAGE'
-});
 
 export const onImageChanged = (src: string): Action => ({
     type: 'IMAGE_CHANGED',
@@ -39,4 +19,8 @@ export const onImageChanged = (src: string): Action => ({
 export const onNewsAvailable = (obj: any): Action => ({
     type: 'NEWS_AVAIALABLE',
     delta: obj
+});
+
+export const fetchNews = (): Action => ({
+    type: 'FETCH_NEWS'
 });

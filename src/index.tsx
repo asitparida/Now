@@ -3,6 +3,7 @@ import * as Redux from 'redux';
 import * as ReactDOM from 'react-dom';
 import { App } from './app/app.component';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import './material-icons.css';
 import './index.css';
 import { Provider } from 'react-redux';
 import { Store } from './state/store';
