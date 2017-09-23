@@ -41,3 +41,12 @@ export const SlackItems: any[] = [
     { title: '@eckhard', count: '02'},
     { title: '@andriy', count: '02'}
 ];
+
+export const GithubStats: any[] = [
+    { title: 'pull requests', count: '02'},
+    { title: 'open issues', count: '02'},
+    { title: 'notifications', count: '02'},
+    { title: 'forks  this month', count: '02'},
+    { title: 'followers this month', count: '02'},
+    { title: 'events this month', count: '02'},
+];

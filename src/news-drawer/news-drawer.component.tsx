@@ -51,6 +51,7 @@ interface OwnProps {
 interface OwnState { }
 
 class NewsDrawer extends React.Component<OwnProps, OwnState> {
+    domRef: any;
     constructor(props: any) {
         super(props);
     }
@@ -69,7 +70,7 @@ class NewsDrawer extends React.Component<OwnProps, OwnState> {
             );
           });
         return (
-            <div className="cards-holder" style={CardHolderStyles}>
+            <div className="cards-holder" style={CardHolderStyles} ref={(dom)=> { this.domRef = dom; }}>
                 <div className="card-title" style={CardTitleStyles}>
                     <span style={CardHolderTitleStyles}>{headerIcon} {title}</span>
                         <div className="card-action-refresh" style={{color: color}}>

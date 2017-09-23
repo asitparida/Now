@@ -42,7 +42,8 @@ export class CardsHolder {
 export  enum CardHolderType {
     NEWS,
     MAILBOX,
-    SLACK
+    SLACK,
+    GIT
 }
 
 export function hexToRgb(hex: string): {r: number, g: number, b: number} | null {
