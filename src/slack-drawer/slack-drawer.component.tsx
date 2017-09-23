@@ -64,7 +64,7 @@ class SlackDrawer extends React.Component<OwnProps, OwnState> {
             );
         });
         return (
-            <div className="cards-holder" style={CardHolderStyles} ref={(dom)=> { this.domRef = dom; }}>
+            <div className="cards-holder" style={CardHolderStyles} ref={(dom) => { this.domRef = dom; }}>
                 <div className="card-title" style={CardTitleStyles}>
                     <span style={CardHolderTitleStyles} >
                         {headerIcon} {title}

@@ -1,7 +1,8 @@
 import * as React from 'react';
 import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
-import FileFileDownload from 'material-ui/svg-icons/file/file-download';
+// import FileFileDownload from 'material-ui/svg-icons/file/file-download';
 import ActionSettings from 'material-ui/svg-icons/action/settings';
+import AvAlbum from 'material-ui/svg-icons/av/album';
 import IconButton from 'material-ui/IconButton';
 import AppDrawer from '../drawer/drawer.component';
 import { Drawer } from '../drawer/drawer-ipc.service';
@@ -45,8 +46,8 @@ const mapStateToProps = (state: Store.All, ownProps: OwnProps): ConnectedState =
 
 class AppComponent extends React.Component<ConnectedState & ConnectedDispatch & OwnProps, OwnState> {
 	self = this;
-	headerForeground: string = '#ffffff';
-	headerBackground: string = '#0073c6';
+	headerForeground: string = '#0073c6';
+	headerBackground: string = '#ffffff';
 	headerId: string = '';
 	headerTitle: string = '( now )';
 	cardHolderRefs: any[] = [];
@@ -58,7 +59,7 @@ class AppComponent extends React.Component<ConnectedState & ConnectedDispatch & 
 			const title = document.querySelector('[data-tag2="header-title"]');
 			if (title) {
 				if (changeTitleBack) {
-					(title as HTMLElement).innerHTML = '( now )'
+					(title as HTMLElement).innerHTML = '( now )';
 				} else {
 					(title as HTMLElement).innerHTML = targetHeaderId;
 				}
@@ -67,7 +68,6 @@ class AppComponent extends React.Component<ConnectedState & ConnectedDispatch & 
 		if (targetHeaderId !== this.headerId) {
 			this.headerId = targetHeaderId;
 			const fgElements = document.querySelectorAll('[data-tag="header-fg"]');
-			const bgElements = document.querySelectorAll('[data-tag="header-bg"]');
 			if (fgElements && fgElements.length > 0 ) {
 				Array.from(fgElements).forEach((elem: HTMLElement) => {
 					if (elem instanceof SVGElement) {
@@ -75,11 +75,6 @@ class AppComponent extends React.Component<ConnectedState & ConnectedDispatch & 
 					} else {
 						elem.style.color = color;
 					}
-				});
-			}
-			if (bgElements && bgElements.length > 0 ) {
-				Array.from(bgElements).forEach((elem: HTMLElement) => {
-					elem.style.backgroundColor = bgColor;
 				});
 			}
 		}
@@ -160,10 +155,10 @@ class AppComponent extends React.Component<ConnectedState & ConnectedDispatch & 
 			cardCollection.headerIcon = <i className="material-icons marginRight10" style={{ color: '#c0392b' }}>fitness_center</i>;
 			cardHolders.push(cardCollection);
 		}
-		this.headerBackground = cardHolders[0].backgroundColor;
 		this.headerForeground = cardHolders[0].color;
 		this.headerId = cardHolders[0].title;
 		cardCollectionTemplate = cardHolders.map((holder: Models.CardsHolder, index: number) => {
+			// tslint:disable:jsx-wrap-multiline jsx-alignment no-unused-expression
 			if (holder.type === Models.CardHolderType.NEWS) {
 				return <NewsDrawer ref={(dom) => { dom && this.cardHolderRefs.push(dom); }} key={index} 
 						title={holder.title} cards={holder.items} type="sync" color={holder.color} backgroundColor={holder.backgroundColor} headerIcon={holder.headerIcon} />;
@@ -177,21 +172,22 @@ class AppComponent extends React.Component<ConnectedState & ConnectedDispatch & 
 				return <MailsDrawer ref={(dom) => { dom && this.cardHolderRefs.push(dom); }} key={index} 
 						title={holder.title} cards={holder.items} color={holder.color} backgroundColor={holder.backgroundColor} headerIcon={holder.headerIcon} />;
 			}
+			// tslint:enable:jsx-wrap-multiline jsx-alignment no-unused-expression
 		}
 		);
 		return (
 			<div className="App">
 				<AppDrawer />
 				<div className="App-header" style={{backgroundColor: this.headerBackground}} data-tag="header-bg">
-					<div className="nav-manu-btn pull-left" >
+					<div className="nav-menu-btn pull-left" >
 						<IconButton onClick={this.handleToggle} >
 							<NavigationMenu color={this.headerForeground} data-tag="header-fg" />
 						</IconButton>
 					</div>
 					<h2 style={{color: this.headerForeground, textTransform: 'lowercase'}} data-tag2="header-title" data-tag="header-fg">{this.headerTitle}</h2>
-					<div className="nav-manu-btn pull-right" >
+					<div className="nav-menu-btn pull-right" >
 						<IconButton onClick={this.props.fetchNews} >
-							<FileFileDownload color={this.headerForeground} data-tag="header-fg" />
+							<AvAlbum color={this.headerForeground} data-tag="header-fg" />
 						</IconButton>
 						<IconButton >
 							<ActionSettings color={this.headerForeground} data-tag="header-fg" />
