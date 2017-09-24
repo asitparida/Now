@@ -33,7 +33,7 @@ class SearchDrawer extends React.Component<OwnProps, OwnState> {
             <div className="cards-holder" style={CardHolderStyles} ref={(dom) => { this.domRef = dom; }}>
                 <div className="cards-wrapper" style={CardWrapperStyles}>
                     <div className="cards-img-inner">
-                        <video src="https://gcs-vimeo.akamaized.net/exp=1506215329~acl=%2A%2F796537622.mp4%2A~hmac=affef391961018435b1ec15bf3e0f82ef1c08b10d584a7633c72ea54833c33b5/vimeo-prod-skyfire-std-us/01/324/9/226624946/796537622.mp4" autoPlay={true} loop={true} />
+                        <video src="https://player.vimeo.com/external/226624946.hd.mp4?s=6857972b29b70e164494b409185fc6b5b63ba7ad&profile_id=175" autoPlay={true} loop={true} />
                         <div className="search-container">
                             <div className="input-holder">
                                 <input type="text" placeholder="Search" />
