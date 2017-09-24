@@ -19,6 +19,9 @@ import { fetchNews } from '../state/action';
 import * as Models from '../services/models';
 import * as StubCollections from '../services/collections';
 
+const nowIcon = require('./now_icon.svg');
+const nowIconAppColor = '#e74c3c';
+
 interface OwnProps { }
 
 interface ConnectedState {
@@ -46,7 +49,7 @@ class AppComponent extends React.Component<ConnectedState & ConnectedDispatch & 
 	headerForeground: string = '#000000';
 	headerBackground: string = '#ffffff';
 	headerId: string = '';
-	headerTitle: string = '( now )';
+	headerTitle: string = 'ow';
 	cardHolderRefs: any[] = [];
 	constructor() {
 		super();
@@ -54,12 +57,21 @@ class AppComponent extends React.Component<ConnectedState & ConnectedDispatch & 
 	setAccentsTo(targetHeaderId: string, color: string, bgColor: string, changeTitleBack: boolean = false) {
 		if (this.headerTitle !== targetHeaderId) {
 			const title = document.querySelector('[data-tag2="header-title"]');
+			const headerIcon = document.querySelector('[data-tag="header-app-icon"]');
+			targetHeaderId = targetHeaderId === 'search' ? 'ow' : targetHeaderId;
 			if (title) {
 				if (changeTitleBack) {
-					(title as HTMLElement).innerHTML = '( now )';
+					(title as HTMLElement).innerHTML = 'ow';
 				} else {
-					(title as HTMLElement).innerHTML = targetHeaderId || '( now )';
+					(title as HTMLElement).innerHTML = targetHeaderId || 'ow';
 				}
+			}
+			if ((title as HTMLElement).innerHTML === 'ow') {
+				(title as HTMLElement).classList.add('no-space');
+				(headerIcon as HTMLElement).style.backgroundColor = nowIconAppColor;
+			} else {
+				(title as HTMLElement).classList.remove('no-space');
+				(headerIcon as HTMLElement).style.backgroundColor = color;
 			}
 		}
 		if (targetHeaderId !== this.headerId) {
@@ -136,13 +148,14 @@ class AppComponent extends React.Component<ConnectedState & ConnectedDispatch & 
 				<AppDrawer />
 				<div className="App-header" style={{ backgroundColor: this.headerBackground }} data-tag="header-bg">
 					<div className="content">
-						<h2 style={{ color: this.headerForeground, textTransform: 'lowercase' }} data-tag2="header-title" data-tag="header-fg">{this.headerTitle}</h2>
+						<div className="app-header-icon" style={{ WebkitMaskImage: 'url(' + nowIcon + ')', backgroundColor: nowIconAppColor }} data-tag="header-app-icon" />
+						<h2 className="no-space" style={{ color: this.headerForeground, textTransform: 'lowercase' }} data-tag2="header-title" data-tag="header-fg">{this.headerTitle}</h2>
 						<div className="nav-menu-btn pull-right" >
 							<IconButton onClick={this.props.fetchNews} >
-								<AvAlbum color={this.headerForeground} data-tag="header-fg" />
+								<AvAlbum color={this.headerForeground} />
 							</IconButton>
 							<IconButton onClick={this.handleToggle}>
-								<ActionSettings color={this.headerForeground} data-tag="header-fg" />
+								<ActionSettings color={this.headerForeground} />
 							</IconButton>
 						</div>
 					</div>
