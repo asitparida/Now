@@ -1,15 +1,16 @@
 {
   "name": "Now",
   "description": "Ovveride tab",
-  "version": "0.1",
+  "version": "0.1.4",
   "incognito": "split",
   "chrome_url_overrides": {
       "newtab": "index.html"
   },
+  "browser_action": {
+    "default_icon": "now_icon.png"
+  },
   "icons": {
-    "16": "now_icon16.png",
-    "48": "now_icon48.png",
-   "128": "now_icon128.png" 
+   "128": "now_icon.png" 
   },
   "manifest_version": 2
 }
