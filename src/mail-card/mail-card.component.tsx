@@ -26,8 +26,7 @@ class MailCard extends React.Component<OwnProps, OwnState> {
         super(props);
     }
     render() {
-        const { title, count, color, backgroundColor } = this.props;
-        MailCardStyles.backgroundColor = backgroundColor;
+        const { title, count, color } = this.props;
         return (
             <a href="" target="_blank" className="news-url">
                 <Card className="mail-card" style={MailCardStyles}>
