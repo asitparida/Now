@@ -36,13 +36,13 @@ class SearchDrawer extends React.Component<OwnProps, OwnState> {
         this.launchSearch = this.launchSearch.bind(this);
     }
     launchSearch($event: any) {
-        if ($event.keyCode === 13 && this.state.searchToken !== '') {
+        if ($event.keyCode === 13 && (this.state.searchToken as string).trim() !== '') {
             window.location.assign('https://www.google.co.in/search?q=' + this.state.searchToken);
         }
     }
     updateToken(e: any) {
         this.setState({
-            searchToken: (e.target.value as string).trim()
+            searchToken: e.target.value
         });
     }
     // tslint:disable:max-line-length
